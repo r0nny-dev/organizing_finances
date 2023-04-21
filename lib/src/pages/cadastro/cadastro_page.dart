@@ -10,6 +10,13 @@ class CadastroPage extends StatefulWidget {
 class _CadastroPageState extends State<CadastroPage> {
   final _formkey = GlobalKey<FormState>();
 
+  final _dataController = TextEditingController();
+  final _valorController = TextEditingController();
+  final _tituloController = TextEditingController();
+  final _observacoesController = TextEditingController();
+
+  saveDivida() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +52,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: TextFormField(
+                        controller: _tituloController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                         ),
@@ -66,6 +74,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: TextFormField(
+                                controller: _dataController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   suffixIcon: Align(
@@ -90,6 +99,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: TextFormField(
+                                controller: _valorController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
                                 ),
@@ -108,6 +118,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: TextFormField(
+                        controller: _observacoesController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                         ),
@@ -130,7 +141,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () => saveDivida(),
                 child: const Text(
                   'Salvar dívida',
                   style: TextStyle(
