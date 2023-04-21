@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
@@ -15,7 +17,25 @@ class _CadastroPageState extends State<CadastroPage> {
   final _tituloController = TextEditingController();
   final _observacoesController = TextEditingController();
 
-  saveDivida() {}
+  saveDivida() {
+    final controller = CadastroControllerImpl();
+
+    final divida = <String, dynamic>{
+      "TítuloDívida": _tituloController.text,
+      "DataCompra": _dataController.text,
+      "Valor": _valorController.text,
+      "Observações": _observacoesController
+    };
+
+    final divida2 = <String, dynamic>{
+      "TítuloDívida": _tituloController.text,
+      "DataCompra": (DateTime.now()).toString(),
+      "Valor": _valorController.text,
+      "Observações": _observacoesController.text
+    };
+
+    controller.saveDividas(divida2);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +72,13 @@ class _CadastroPageState extends State<CadastroPage> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Defina um Título';
+                          }
+
+                          return null;
+                        },
                         controller: _tituloController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -74,6 +101,13 @@ class _CadastroPageState extends State<CadastroPage> {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Defina uma data';
+                                  }
+
+                                  return null;
+                                },
                                 controller: _dataController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
@@ -99,6 +133,13 @@ class _CadastroPageState extends State<CadastroPage> {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Defina um Valor';
+                                  }
+
+                                  return null;
+                                },
                                 controller: _valorController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
@@ -118,6 +159,13 @@ class _CadastroPageState extends State<CadastroPage> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Defina uma Observação';
+                          }
+
+                          return null;
+                        },
                         controller: _observacoesController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -141,7 +189,20 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                   ),
                 ),
-                onPressed: () => saveDivida(),
+                onPressed: () {
+                  if (_formkey.currentState!.validate()) {
+                    saveDivida();
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Dívida Salva Com Sucesso'),
+                      backgroundColor: Colors.greenAccent,
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Falha ao salvar nova dívida'),
+                      backgroundColor: Colors.redAccent,
+                    ));
+                  }
+                },
                 child: const Text(
                   'Salvar dívida',
                   style: TextStyle(
