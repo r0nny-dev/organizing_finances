@@ -151,7 +151,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     color: Colors.black,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
