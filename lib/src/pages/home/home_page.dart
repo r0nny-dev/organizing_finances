@@ -29,29 +29,31 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         actions: const [
           CircleAvatar(
-            backgroundColor: Color.fromRGBO(231, 101, 8, 10),
-            child: Text('R',
-                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 25)),
-          ),
+              backgroundColor: Color.fromRGBO(231, 101, 8, 10),
+              child: Text('R',
+                  style:
+                      TextStyle(fontWeight: FontWeight.normal, fontSize: 25))),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Column(
-            children: const [
-              SaldoWidget(),
-              Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 15, 20),
-                child: MenuWidget(),
-              ),
-              PropagandaWidget(),
-              Padding(
-                padding: EdgeInsets.only(top: 225),
-                child: CadastroButtonWidget(),
-              ),
-            ],
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Column(
+              children: const [
+                SaldoWidget(),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(15, 10, 15, 20),
+                  child: MenuWidget(),
+                ),
+                PropagandaWidget(),
+                Padding(
+                  padding: EdgeInsets.only(top: 225),
+                  child: CadastroButtonWidget(),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

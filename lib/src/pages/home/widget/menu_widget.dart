@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizing_finances/src/pages/divida/divida_page.dart';
 
 class MenuWidget extends StatefulWidget {
   const MenuWidget({super.key});
@@ -13,23 +14,32 @@ class _MenuWidgetState extends State<MenuWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Container(
-          width: 110,
-          height: 65,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            color: const Color.fromRGBO(217, 217, 217, 46),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const <Widget>[
-              Icon(
-                Icons.request_quote_outlined,
-                size: 32,
-              ),
-              Text('Dívidas'),
-            ],
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DividaPage(),
+                ));
+          },
+          child: Container(
+            width: 110,
+            height: 65,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: const Color.fromRGBO(217, 217, 217, 46),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                Icon(
+                  Icons.request_quote_outlined,
+                  size: 32,
+                ),
+                Text('Dívidas'),
+              ],
+            ),
           ),
         ),
         Container(
