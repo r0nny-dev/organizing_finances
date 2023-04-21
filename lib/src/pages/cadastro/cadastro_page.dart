@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
 
@@ -66,6 +65,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   children: [
                     const Text('Títilo da dívida'),
                     Container(
+                      padding: const EdgeInsets.only(left: 5),
                       height: 50,
                       decoration: BoxDecoration(
                         color: const Color.fromRGBO(217, 217, 217, 46),
@@ -94,6 +94,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           children: [
                             const Text('Data da compra'),
                             Container(
+                              padding: const EdgeInsets.only(left: 5),
                               height: 50,
                               width: 175,
                               decoration: BoxDecoration(
@@ -126,6 +127,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           children: [
                             const Text('Valor'),
                             Container(
+                              padding: const EdgeInsets.only(left: 5),
                               height: 50,
                               width: 175,
                               decoration: BoxDecoration(
@@ -153,6 +155,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     const SizedBox(height: 10),
                     const Text('Observações (opcional)'),
                     Container(
+                      padding: const EdgeInsets.only(left: 5),
                       height: 50,
                       decoration: BoxDecoration(
                         color: const Color.fromRGBO(217, 217, 217, 46),
