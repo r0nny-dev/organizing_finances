@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "681176706311",
+    "firebase_url": "https://organizing-finances-default-rtdb.firebaseio.com",
+    "project_id": "organizing-finances",
+    "storage_bucket": "organizing-finances.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681176706311:android:03811670ed4b1bee0229a2",
+        "android_client_info": {
+          "package_name": "com.organizing_finances.organizing_finances"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681176706311-qa46b1tq4qvvqvmr6c2tkps1gdp2kopa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNcNwi_d2oErbE4uC2ZOZYx3R3SaDctq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681176706311-qa46b1tq4qvvqvmr6c2tkps1gdp2kopa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
