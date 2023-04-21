@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:organizing_finances/src/pages/divida/divida_page.dart';
+import 'package:organizing_finances/src/pages/home/widget/action_menu_item.dart';
 import 'package:organizing_finances/src/pages/home/widget/cadastro_button_widget.dart';
-import 'package:organizing_finances/src/pages/home/widget/menu_widget.dart';
 import 'package:organizing_finances/src/pages/home/widget/propaganda_widget.dart';
 import 'package:organizing_finances/src/pages/home/widget/saldo_widget.dart';
 
@@ -39,14 +40,46 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             Column(
-              children: const [
+              children: [
                 SaldoWidget(),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 10, 15, 20),
-                  child: MenuWidget(),
+                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DividaPage(),
+                            ),
+                          );
+                        },
+                        child: const ActionMenuItem(
+                          title: 'Dívidas',
+                          icon: Icons.request_quote_outlined,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: const ActionMenuItem(
+                          title: 'Vecimentos',
+                          icon: Icons.notification_add_outlined,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: const ActionMenuItem(
+                          title: 'Relatórios',
+                          icon: Icons.print_outlined,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                PropagandaWidget(),
-                Padding(
+                const PropagandaWidget(),
+                const Padding(
                   padding: EdgeInsets.only(top: 225),
                   child: CadastroButtonWidget(),
                 ),
