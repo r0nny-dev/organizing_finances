@@ -7,7 +7,7 @@ class DividaRepositoryImpl extends DividaRepository {
 
   @override
   Future<List<Map>> getDividas() async {
-    return (await db.get())
+    return (await db.doc("DívidasCliente").collection("Dívidas").get())
         .docs
         .map((e) => {
               "TítuloDívida": e.get('TítuloDívida'),
