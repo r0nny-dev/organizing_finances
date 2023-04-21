@@ -1,3 +1,6 @@
+import 'dart:ffi';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
 
@@ -29,7 +32,7 @@ class _CadastroPageState extends State<CadastroPage> {
     final divida2 = <String, dynamic>{
       "TítuloDívida": _tituloController.text,
       "DataCompra": (DateTime.now()).toString(),
-      "Valor": _valorController.text,
+      "Valor": double.parse(_valorController.text),
       "Observações": _observacoesController.text
     };
 
@@ -199,6 +202,8 @@ class _CadastroPageState extends State<CadastroPage> {
                       content: Text('Dívida Salva Com Sucesso'),
                       backgroundColor: Colors.greenAccent,
                     ));
+
+                    Navigator.pop(context);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Falha ao salvar nova dívida'),
