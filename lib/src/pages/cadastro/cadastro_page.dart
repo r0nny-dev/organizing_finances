@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
+import 'package:organizing_finances/src/shared/widget/button_widget.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
@@ -94,7 +95,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           children: [
                             const Text('Data da compra'),
                             Container(
-                              padding: const EdgeInsets.only(left: 5),
+                              padding: const EdgeInsets.only(left: 5, right: 5),
                               height: 50,
                               width: 175,
                               decoration: BoxDecoration(
@@ -113,6 +114,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   suffixIcon: Align(
+                                    alignment: Alignment.centerRight,
                                     widthFactor: 1.0,
                                     heightFactor: 1.0,
                                     child: Icon(Icons.calendar_month_outlined),
@@ -181,42 +183,28 @@ class _CadastroPageState extends State<CadastroPage> {
               const SizedBox(
                 height: 275,
               ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(5),
-                  backgroundColor: MaterialStateProperty.all(
-                      const Color.fromRGBO(231, 101, 8, 0.9)),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                  ),
-                ),
+              ButtonWidget(
+                title: 'Salvar dívida',
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
                     saveDivida();
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Dívida Salva Com Sucesso'),
-                      backgroundColor: Colors.greenAccent,
-                    ));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Dívida Salva Com Sucesso'),
+                        backgroundColor: Colors.greenAccent,
+                      ),
+                    );
 
                     Navigator.pop(context);
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Falha ao salvar nova dívida'),
-                      backgroundColor: Colors.redAccent,
-                    ));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Falha ao salvar nova dívida'),
+                        backgroundColor: Colors.redAccent,
+                      ),
+                    );
                   }
                 },
-                child: const Text(
-                  'Salvar dívida',
-                  style: TextStyle(
-                    fontFamily: 'Dongle',
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
               ),
             ],
           ),

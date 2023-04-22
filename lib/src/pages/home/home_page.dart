@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:organizing_finances/src/pages/divida/divida_page.dart';
 import 'package:organizing_finances/src/pages/home/widget/action_menu_item.dart';
-import 'package:organizing_finances/src/pages/home/widget/cadastro_button_widget.dart';
 import 'package:organizing_finances/src/pages/home/widget/propaganda_widget.dart';
 import 'package:organizing_finances/src/pages/home/widget/saldo_widget.dart';
+import 'package:organizing_finances/src/shared/widget/button_widget.dart';
+
+import '../cadastro/cadastro_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -81,9 +83,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const PropagandaWidget(),
-                const Padding(
-                  padding: EdgeInsets.only(top: 225),
-                  child: CadastroButtonWidget(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 225),
+                  child: ButtonWidget(
+                    title: 'Cadastrar Nova Dívida',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CadastroPage(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
