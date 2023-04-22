@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
 
@@ -25,7 +22,7 @@ class _CadastroPageState extends State<CadastroPage> {
     final divida = <String, dynamic>{
       "TítuloDívida": _tituloController.text,
       "DataCompra": _dataController.text,
-      "Valor": _valorController.text,
+      "Valor": double.parse(_valorController.text),
       "Observações": _observacoesController
     };
 

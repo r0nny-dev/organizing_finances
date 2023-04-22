@@ -30,10 +30,12 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         actions: const [
           CircleAvatar(
-              backgroundColor: Color.fromRGBO(231, 101, 8, 10),
-              child: Text('R',
-                  style:
-                      TextStyle(fontWeight: FontWeight.normal, fontSize: 25))),
+            backgroundColor: Color.fromRGBO(231, 101, 8, 10),
+            child: Text(
+              'R',
+              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 25),
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
