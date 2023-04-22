@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizing_finances/src/pages/home/controllers/saldo_widget_controller_impl.dart';
 
 class SaldoWidget extends StatefulWidget {
   const SaldoWidget({super.key});
@@ -8,7 +9,7 @@ class SaldoWidget extends StatefulWidget {
 }
 
 class _SaldoWidgetState extends State<SaldoWidget> {
-  final double _saldoDevedor = 2800.25;
+  final controller = SaldoWidgetControllerImpl();
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +28,24 @@ class _SaldoWidgetState extends State<SaldoWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'R\$ $_saldoDevedor',
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(231, 101, 8, 10),
-                ),
+              FutureBuilder(
+                future: controller.getSaldoDevedor(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      'R\$ ${snapshot.data["Valor"]}',
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(231, 101, 8, 10),
+                      ),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
               ),
               const Icon(Icons.remove_red_eye_outlined, size: 28),
             ],
