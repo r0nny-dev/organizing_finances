@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
+import 'package:organizing_finances/src/pages/cadastro/widget/form_field_widget.dart';
 import 'package:organizing_finances/src/shared/widget/button_widget.dart';
 
 class CadastroPage extends StatefulWidget {
@@ -16,6 +17,15 @@ class _CadastroPageState extends State<CadastroPage> {
   final _valorController = TextEditingController();
   final _tituloController = TextEditingController();
   final _observacoesController = TextEditingController();
+
+  _snackBar(String message, Color cor) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: cor,
+      ),
+    );
+  }
 
   saveDivida() {
     final controller = CadastroControllerImpl();
@@ -65,26 +75,17 @@ class _CadastroPageState extends State<CadastroPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('Títilo da dívida'),
-                    Container(
-                      padding: const EdgeInsets.only(left: 5),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(217, 217, 217, 46),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Defina um Título';
-                          }
-
-                          return null;
-                        },
-                        controller: _tituloController,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
+                    FormFieldWidget(
+                      controller: _tituloController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return _snackBar(
+                            'Defina um Título',
+                            Colors.redAccent,
+                          );
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -94,33 +95,18 @@ class _CadastroPageState extends State<CadastroPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text('Data da compra'),
-                            Container(
-                              padding: const EdgeInsets.only(left: 5, right: 5),
-                              height: 50,
+                            FormFieldWidget(
                               width: 175,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(217, 217, 217, 46),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: TextFormField(
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Defina uma data';
-                                  }
-
-                                  return null;
-                                },
-                                controller: _dataController,
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  suffixIcon: Align(
-                                    alignment: Alignment.centerRight,
-                                    widthFactor: 1.0,
-                                    heightFactor: 1.0,
-                                    child: Icon(Icons.calendar_month_outlined),
-                                  ),
-                                ),
-                              ),
+                              controller: _dataController,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return _snackBar(
+                                    'Defina uma data',
+                                    Colors.redAccent,
+                                  );
+                                }
+                                return null;
+                              },
                             ),
                           ],
                         ),
@@ -128,27 +114,19 @@ class _CadastroPageState extends State<CadastroPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text('Valor'),
-                            Container(
-                              padding: const EdgeInsets.only(left: 5),
-                              height: 50,
+                            FormFieldWidget(
                               width: 175,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(217, 217, 217, 46),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: TextFormField(
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Defina um Valor';
-                                  }
+                              controller: _valorController,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return _snackBar(
+                                    'Defina um Valor',
+                                    Colors.redAccent,
+                                  );
+                                }
 
-                                  return null;
-                                },
-                                controller: _valorController,
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                ),
-                              ),
+                                return null;
+                              },
                             ),
                           ],
                         ),
@@ -156,26 +134,17 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     const SizedBox(height: 10),
                     const Text('Observações (opcional)'),
-                    Container(
-                      padding: const EdgeInsets.only(left: 5),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(217, 217, 217, 46),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Defina uma Observação';
-                          }
-
-                          return null;
-                        },
-                        controller: _observacoesController,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
+                    FormFieldWidget(
+                      controller: _observacoesController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return _snackBar(
+                            'Defina uma Observação',
+                            Colors.redAccent,
+                          );
+                        }
+                        return null;
+                      },
                     ),
                   ],
                 ),
@@ -188,21 +157,12 @@ class _CadastroPageState extends State<CadastroPage> {
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
                     saveDivida();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Dívida Salva Com Sucesso'),
-                        backgroundColor: Colors.greenAccent,
-                      ),
-                    );
+
+                    _snackBar('Dívida Salva Com Sucesso', Colors.greenAccent);
 
                     Navigator.pop(context);
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Falha ao salvar nova dívida'),
-                        backgroundColor: Colors.redAccent,
-                      ),
-                    );
+                    _snackBar('Falha ao salvar nova dívida', Colors.redAccent);
                   }
                 },
               ),
