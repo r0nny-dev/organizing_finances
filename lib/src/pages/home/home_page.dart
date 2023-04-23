@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Column(
               children: [
-                const SaldoWidget(),
+                SaldoWidget(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(15, 10, 15, 20),
                   child: Row(
