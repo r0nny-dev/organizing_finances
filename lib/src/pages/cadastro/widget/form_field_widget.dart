@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FormFieldWidget extends StatefulWidget {
-  FormFieldWidget({
+  const FormFieldWidget({
     super.key,
     this.icon,
     this.width,
