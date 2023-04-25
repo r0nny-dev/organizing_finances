@@ -18,6 +18,21 @@ class _CadastroPageState extends State<CadastroPage> {
   final _tituloController = TextEditingController();
   final _observacoesController = TextEditingController();
 
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    ).then((value) {
+      if (value != null) {
+        setState(() {
+          _dataController.text = "${value.day}-${value.month}-${value.year}";
+        });
+      }
+    });
+  }
+
   _snackBar(String message, Color cor) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -37,14 +52,7 @@ class _CadastroPageState extends State<CadastroPage> {
       "Observações": _observacoesController
     };
 
-    final divida2 = <String, dynamic>{
-      "TítuloDívida": _tituloController.text,
-      "DataCompra": (DateTime.now()).toString(),
-      "Valor": double.parse(_valorController.text),
-      "Observações": _observacoesController.text
-    };
-
-    controller.saveDividas(divida2);
+    controller.saveDividas(divida);
   }
 
   @override
@@ -97,6 +105,8 @@ class _CadastroPageState extends State<CadastroPage> {
                             const Text('Data da compra'),
                             FormFieldWidget(
                               width: 175,
+                              onTap: _showDatePicker,
+                              icon: const Icon(Icons.calendar_month_outlined),
                               controller: _dataController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -117,6 +127,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             FormFieldWidget(
                               width: 175,
                               controller: _valorController,
+                              keyboard: TextInputType.number,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return _snackBar(
