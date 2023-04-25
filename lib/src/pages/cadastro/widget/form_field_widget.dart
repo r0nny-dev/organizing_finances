@@ -7,12 +7,16 @@ class FormFieldWidget extends StatefulWidget {
     this.icon,
     this.width,
     this.inputFormatters,
+    this.onTap,
+    this.keyboard,
     required this.validator,
     required this.controller,
   });
 
-  final Align? icon;
+  final Icon? icon;
   final double? width;
+  final Function()? onTap;
+  final TextInputType? keyboard;
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
@@ -33,12 +37,16 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
         borderRadius: BorderRadius.circular(6),
       ),
       child: TextFormField(
+        onTap: widget.onTap,
         validator: widget.validator,
         controller: widget.controller,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           border: InputBorder.none,
+          prefixIcon: widget.icon,
+          prefixStyle: const TextStyle(),
         ),
         inputFormatters: widget.inputFormatters,
+        keyboardType: widget.keyboard,
       ),
     );
   }
