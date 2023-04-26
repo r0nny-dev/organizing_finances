@@ -29,7 +29,8 @@ class _CadastroPageState extends State<CadastroPage> {
     ).then((value) {
       if (value != null) {
         setState(() {
-          _dataController.text = "${value.day}-${value.month}-${value.year}";
+          _dataController.text =
+              "${value.day}-${(value.month < 10) ? ('0${value.month}') : value.month}-${value.year}";
         });
       }
     });
