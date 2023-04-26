@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
-import 'package:organizing_finances/src/pages/cadastro/widget/form_field_widget.dart';
+import 'package:flutter/services.dart';
 import 'package:organizing_finances/src/shared/widget/button_widget.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:organizing_finances/src/pages/cadastro/widget/form_field_widget.dart';
+import 'package:organizing_finances/src/pages/cadastro/controllers/cadastro_controller_impl.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
@@ -44,12 +46,16 @@ class _CadastroPageState extends State<CadastroPage> {
 
   saveDivida() {
     final controller = CadastroControllerImpl();
+    String valorCompleto = _valorController.text
+        .substring(4)
+        .replaceAll('.', '')
+        .replaceAll(',', '.');
 
     final divida = <String, dynamic>{
       "TítuloDívida": _tituloController.text,
       "DataCompra": _dataController.text,
-      "Valor": double.parse(_valorController.text),
-      "Observações": _observacoesController
+      "Valor": double.parse(valorCompleto),
+      "Observações": _observacoesController.text
     };
 
     controller.saveDividas(divida);
@@ -106,8 +112,9 @@ class _CadastroPageState extends State<CadastroPage> {
                             FormFieldWidget(
                               width: 175,
                               onTap: _showDatePicker,
-                              icon: const Icon(Icons.calendar_month_outlined),
                               controller: _dataController,
+                              keyboard: TextInputType.none,
+                              icon: const Icon(Icons.calendar_month_outlined),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return _snackBar(
@@ -128,6 +135,12 @@ class _CadastroPageState extends State<CadastroPage> {
                               width: 175,
                               controller: _valorController,
                               keyboard: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                CurrencyTextInputFormatter(
+                                  locale: 'pt-br',
+                                  decimalDigits: 2,
+                                ),
+                              ],
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return _snackBar(
