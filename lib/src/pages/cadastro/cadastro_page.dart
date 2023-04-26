@@ -53,7 +53,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
     final divida = <String, dynamic>{
       "TítuloDívida": _tituloController.text,
-      "DataCompra": _dataController.text,
+      "DataVencimento": _dataController.text,
       "Valor": double.parse(valorCompleto),
       "Observações": _observacoesController.text
     };
@@ -108,7 +108,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Data da compra'),
+                            const Text('Data Vencimento'),
                             FormFieldWidget(
                               width: 175,
                               onTap: _showDatePicker,
@@ -118,7 +118,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return _snackBar(
-                                    'Defina uma data',
+                                    'Defina a data de Vencimento',
                                     Colors.redAccent,
                                   );
                                 }
