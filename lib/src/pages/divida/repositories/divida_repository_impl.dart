@@ -11,7 +11,7 @@ class DividaRepositoryImpl extends DividaRepository {
         .docs
         .map((e) => {
               "TítuloDívida": e.get('TítuloDívida'),
-              "DataCompra": e.get('DataCompra'),
+              "DataVencimento": e.get('DataVencimento'),
               "Valor": e.get('Valor'),
               "Observações": e.get('Observações')
             })
