@@ -172,27 +172,25 @@ class _CadastroPageState extends State<CadastroPage> {
                         return null;
                       },
                     ),
-                    const SizedBox(
-                      height: 275,
-                    ),
-                    ButtonWidget(
-                      title: 'Salvar dívida',
-                      onPressed: () {
-                        if (_formkey.currentState!.validate()) {
-                          saveDivida();
-
-                          _snackBar(
-                              'Dívida Salva Com Sucesso', Colors.greenAccent);
-
-                          Navigator.pop(context);
-                        } else {
-                          _snackBar(
-                              'Falha ao salvar nova dívida', Colors.redAccent);
-                        }
-                      },
-                    ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 275,
+              ),
+              ButtonWidget(
+                title: 'Salvar dívida',
+                onPressed: () {
+                  if (_formkey.currentState!.validate()) {
+                    saveDivida();
+
+                    _snackBar('Dívida Salva Com Sucesso', Colors.greenAccent);
+
+                    Navigator.pop(context);
+                  } else {
+                    _snackBar('Falha ao salvar nova dívida', Colors.redAccent);
+                  }
+                },
               ),
             ],
           ),
