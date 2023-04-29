@@ -30,8 +30,8 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      padding: const EdgeInsets.only(left: 5),
       width: widget.width,
+      padding: const EdgeInsets.only(left: 5),
       decoration: BoxDecoration(
         color: const Color.fromRGBO(217, 217, 217, 46),
         borderRadius: BorderRadius.circular(6),
@@ -43,7 +43,6 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
         decoration: InputDecoration(
           border: InputBorder.none,
           prefixIcon: widget.icon,
-          prefixStyle: const TextStyle(),
         ),
         inputFormatters: widget.inputFormatters,
         keyboardType: widget.keyboard,
