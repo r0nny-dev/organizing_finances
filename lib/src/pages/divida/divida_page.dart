@@ -38,21 +38,43 @@ class _DividaPageState extends State<DividaPage> {
             return ListView.builder(
               itemCount: list?.length,
               itemBuilder: (context, index) => ListTile(
-                title: Text(list?[index]['TítuloDívida']),
-                subtitle: Text('R\$ ${(list?[index]['Valor']).toString()}'),
+                leading: const CircleAvatar(
+                  backgroundColor: Color.fromRGBO(217, 217, 217, 46),
+                  child: Icon(Icons.payments),
+                ),
+                title: Text(
+                  list?[index]['TítuloDívida'],
+                  style: const TextStyle(fontSize: 18),
+                ),
+                subtitle: Text(
+                  'R\$ ${(list?[index]['Valor']).toString()}',
+                  style: const TextStyle(
+                    fontFamily: 'Dongle',
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(231, 101, 8, 10),
+                  ),
+                ),
                 trailing: SizedBox(
                   width: 100,
                   child: Row(
                     children: <Widget>[
-                      IconButton(
-                        onPressed: () {},
-                        color: const Color.fromRGBO(231, 101, 8, 10),
-                        icon: const Icon(Icons.edit),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        color: const Color.fromRGBO(231, 101, 8, 10),
-                        icon: const Icon(Icons.delete),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   color: const Color.fromRGBO(231, 101, 8, 10),
+                      //   icon: const Icon(Icons.edit),
+                      // ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   color: const Color.fromRGBO(231, 101, 8, 10),
+                      //   icon: const Icon(Icons.delete),
+                      // ),
+                      Text(
+                        '${list?[index]['DataVencimento']}',
+                        style: const TextStyle(
+                          fontFamily: 'Dongle',
+                          fontSize: 26,
+                        ),
                       ),
                     ],
                   ),
