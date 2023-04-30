@@ -10,6 +10,7 @@ class DividaRepositoryImpl extends DividaRepository {
     return (await db.doc("DívidasCliente").collection("Dívidas").get())
         .docs
         .map((e) => {
+              "DocReference": e.reference,
               "TítuloDívida": e.get('TítuloDívida'),
               "DataVencimento": e.get('DataVencimento'),
               "Valor": e.get('Valor'),
