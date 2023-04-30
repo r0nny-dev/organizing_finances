@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizing_finances/src/pages/detalhe_divida/detalhe_divida_page.dart';
 import 'package:organizing_finances/src/pages/divida/controllers/divida_controller_impl.dart';
 
 class DividaPage extends StatefulWidget {
@@ -38,7 +39,15 @@ class _DividaPageState extends State<DividaPage> {
             return ListView.builder(
               itemCount: list?.length,
               itemBuilder: (context, index) => ListTile(
-                onTap: () {}, //OnTap Abrir Details
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          DetalheDividaPage(detalhesDivida: list?[index]),
+                    ),
+                  );
+                }, //OnTap Abrir Details
                 leading: const CircleAvatar(
                   backgroundColor: Color.fromRGBO(217, 217, 217, 46),
                   child: Icon(Icons.payments),
