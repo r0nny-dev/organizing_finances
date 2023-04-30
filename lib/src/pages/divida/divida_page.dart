@@ -38,6 +38,7 @@ class _DividaPageState extends State<DividaPage> {
             return ListView.builder(
               itemCount: list?.length,
               itemBuilder: (context, index) => ListTile(
+                onTap: () {}, //OnTap Abrir Details
                 leading: const CircleAvatar(
                   backgroundColor: Color.fromRGBO(217, 217, 217, 46),
                   child: Icon(Icons.payments),
@@ -56,24 +57,21 @@ class _DividaPageState extends State<DividaPage> {
                   ),
                 ),
                 trailing: SizedBox(
-                  width: 100,
-                  child: Row(
+                  width: 125,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      // IconButton(
-                      //   onPressed: () {},
-                      //   color: const Color.fromRGBO(231, 101, 8, 10),
-                      //   icon: const Icon(Icons.edit),
-                      // ),
-                      // IconButton(
-                      //   onPressed: () {},
-                      //   color: const Color.fromRGBO(231, 101, 8, 10),
-                      //   icon: const Icon(Icons.delete),
-                      // ),
+                      const Text(
+                        'Data de Vencimento',
+                        style: TextStyle(
+                          fontSize: 10,
+                        ),
+                      ),
                       Text(
                         '${list?[index]['DataVencimento']}',
                         style: const TextStyle(
                           fontFamily: 'Dongle',
-                          fontSize: 26,
+                          fontSize: 24,
                         ),
                       ),
                     ],
